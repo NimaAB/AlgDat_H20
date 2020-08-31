@@ -2,6 +2,7 @@ package uke2;
 
 public class Turneringstre {
     public static void main(String[] args) {
+
         int [] a = {0, 0, 0, 0, 0, 0, 2, 9, 8, 6, 5, 3};
         int begin = 5;
 

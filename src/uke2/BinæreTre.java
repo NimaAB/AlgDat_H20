@@ -6,6 +6,7 @@ public class BinæreTre {
         Node rightChild;
         Node leftChild;
         Node parent;
+
         public Node(Node parent,char value){
             this.value=value;
             this.parent=parent;

@@ -48,5 +48,4 @@ public class NestStørst {
         }
         return maksimum;
     }
-
 }
