@@ -1,8 +1,8 @@
 package uke2;
 
-public class NestStørst {
+public class NestMinOgNestMax {
 
-    static int nestStørst1(int[] a){
+    static int nestMax(int[] a){
         //finner det minste tallet mellom to første elementene i arrayet, og sier at det er den nest største:
         int nestStørst = min(a[0],a[1]);
         //finner maks tall mellom de to elementene:
@@ -27,6 +27,23 @@ public class NestStørst {
             }
         }
         return nestStørst;
+    }
+    static int nestMin(int[] a){
+        int nestMin = max(a[0],a[1]);
+        int minst = min(a[0],a[1]);
+
+        for(int i = 2; i<a.length;++i){
+            if(a[i]<nestMin){
+                if(a[i]<minst){
+                    int temp = minst;
+                    minst = a[i];
+                    nestMin = temp;
+                }else {
+                    nestMin = a[i];
+                }
+            }
+        }
+        return nestMin;
     }
 
     static int min(int ... a){
