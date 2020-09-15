@@ -43,16 +43,3 @@ public class GenericSorting <T extends Comparable<? super T>>{
         quickSort(a, begin,end-1);
     }
 }
-class Main1{
-    public static void main(String[] args) {
-        Integer [] arr= {};
-        try {
-            GenericSorting<Integer> a = new GenericSorting<>(arr);
-            a.sort();
-            System.out.println(Arrays.toString(arr));
-        }catch (NoSuchElementException e){
-            System.err.println(e.getMessage());
-        }
-
-    }
-}
