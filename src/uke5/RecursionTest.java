@@ -24,16 +24,15 @@ class RecursionTest {
     @Test
     void fakulitet(){
         int y = randomTall();
-        int ans =0;
-        switch (y){
-            case 2: ans=2; break;
-            case 3: ans=6; break;
-            case 4: ans=24; break;
-            case 5: ans=120; break;
-            case 6: ans=720; break;
-            case 7: ans=5040; break;
-            default:ans=1;break;
-        }
+        int ans= switch (y){
+            case 2 -> 2;
+            case 3 -> 6;
+            case 4 -> 24;
+            case 5 -> 120;
+            case 6 -> 720;
+            case 7 -> 5040;
+            default -> 1;
+        };
         try{
             int w = Recursion.fakulitet(y);
             assertEquals(ans,w);
