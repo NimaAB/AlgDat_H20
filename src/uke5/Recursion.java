@@ -19,7 +19,6 @@ public class Recursion {
             }
         }
     }
-
     static int fakulitet(int x){
         if(x>=0) {
             return (x == 1 || x == 0) ? 1 : x * fakulitet(x - 1);
@@ -27,5 +26,4 @@ public class Recursion {
             throw new NoSuchElementException("Error: Fakulitet av negative tall!");
         }
     }
-
 }
