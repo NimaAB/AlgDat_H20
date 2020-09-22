@@ -6,7 +6,7 @@ public class TowerOfHanois {
 
     }
     static void hanois(char a,char b,char c,int brikkenr){
-        if(brikkenr ==0){
+        if(brikkenr == 0){
             return;
         }
         // flytt a -> b:
