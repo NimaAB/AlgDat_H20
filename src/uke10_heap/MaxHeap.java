@@ -1,29 +1,28 @@
 package uke10_heap;
 import java.math.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 public class MaxHeap<E> {
-    private int size;
-    private E[] data;
+    private ArrayList<E> data;
     private int last_pos;
     private Comparator<? super E> comp;
     //the heap indexing begin from 0 in this code:
     //right_child = 2*i+1
     //left_child = 2*i+2
     //parent = Math.floor(i-1/2);
-    public MaxHeap(int size,Comparator<? super E> comparator){
-        this.size = size;
-        this.data = (E[])new Object[size];
-        last_pos = 0;
+    public MaxHeap(Comparator<? super E> comparator){
+        this.data = new ArrayList<>();
+        last_pos = -1;
         this.comp = comparator;
     }
-    public MaxHeap(E[] data, Comparator<? super E> comparator){
-        this.size = data.length;
+    public MaxHeap(ArrayList<E> data, Comparator<? super E> comparator){
         this.last_pos = -1;
-        this.data = (E[])new Object[size];
+        this.data = new ArrayList<>();
         this.comp = comparator;
-        //TODO: making the heap:
+        //making the heap:
         for(E el: data){
             add(el);
         }
@@ -31,7 +30,7 @@ public class MaxHeap<E> {
     }
 
     public void add(E value){
-        data[++last_pos] = value;
+        data.add(++last_pos,value);
         trickleUp(last_pos);
     }
     //coming up: used in add
@@ -40,7 +39,7 @@ public class MaxHeap<E> {
             return;
         }
         int parent_pos = Math.floorDiv(position-1,2);
-        int cmp = comp.compare(data[position],data[parent_pos]); //{0,1,2,3,4} id=0 -> id=1 & 2
+        int cmp = comp.compare(data.get(position),data.get(parent_pos));
         if(cmp>0){
             swap(position,parent_pos);
             trickleUp(parent_pos);
@@ -49,7 +48,7 @@ public class MaxHeap<E> {
 
     public E remove(){
         int root = 0;
-        E temp = data[root];
+        E temp = data.get(root);
         swap(root,last_pos--);
         trickleDown(root);
         return temp;
@@ -59,18 +58,18 @@ public class MaxHeap<E> {
         int right_child = 2*position+2;
         int left_child = 2*position+1;
 
-        if(left_child==last_pos && comp.compare(data[left_child],data[position])>0){
+        if(left_child==last_pos && comp.compare(data.get(left_child),data.get(position))>0){
             swap(position,left_child);
             return;
         }
-        if(right_child==last_pos && comp.compare(data[right_child],data[position])>0){
+        if(right_child==last_pos && comp.compare(data.get(right_child),data.get(position))>0){
             swap(position,right_child);
             return;
         }
         if(left_child>=last_pos || right_child>= last_pos){
             return;
         }
-        int cmp = comp.compare(data[right_child],data[left_child]);
+        int cmp = comp.compare(data.get(right_child),data.get(left_child));
         if(cmp>0){
             swap(position,right_child);
             trickleDown(right_child);
@@ -81,23 +80,31 @@ public class MaxHeap<E> {
     }
     //swaping:
     private void swap(int from,int to){
-        E temp = data[from];
-        data[from] = data[to];
-        data[to] = temp;
+        E temp = data.get(from);
+        data.set(from, data.get(to));
+        data.set(to,temp);
     }
     //heap sort by removing.
-    public E[] sort(){
-        E [] sort = (E[]) new Object[size];
-        int i =0;
-        while(i<size){
-            sort[i] = remove();
-            i++;
+    public void sort(){
+        int i = data.size()-1;
+        while(i>=0){
+            data.set(i,remove());
+            i--;
         }
-        return sort;
+    }
+
+    //highest priority:
+    public E max(){
+        return data.get(0);
+    }
+
+    //getting the data:
+    public ArrayList<E> getData(){
+        return this.data;
     }
 
     @Override
     public String toString() {
-        return "data=" + Arrays.toString(data);
+        return "data=" + Arrays.toString(data.toArray());
     }
 }
