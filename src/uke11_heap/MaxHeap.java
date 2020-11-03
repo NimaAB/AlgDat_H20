@@ -1,9 +1,7 @@
-package uke10_heap;
-import java.math.*;
+package uke11_heap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
 public class MaxHeap<E> {
     private ArrayList<E> data;
@@ -86,7 +84,7 @@ public class MaxHeap<E> {
     }
     //heap sort by removing.
     public void sort(){
-        int i = data.size()-1;
+        int i = data.size()-1;//using the last posision to sort the data in ascending order.
         while(i>=0){
             data.set(i,remove());
             i--;

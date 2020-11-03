@@ -25,7 +25,8 @@ public class Test {
         if((2&0x7fffffff)>=0){
             System.out.println("True = " + (2&0x7fffffff));
         }*/
-
+        double x = 2<<2;
+        System.out.println(x);
 
 
 
