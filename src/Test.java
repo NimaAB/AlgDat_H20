@@ -15,18 +15,19 @@ public class Test {
     }
 
     public static void main(String[] args) {
-       /* //System.out.println(Arrays.toString(bokstavNr()));
+       //System.out.println(Arrays.toString(bokstavNr()));
         System.out.println(0x7fffffff);
-        System.out.println(-1&0x7fffffff%10);
-        System.out.println(-2&0x7fffffff%10);
-        System.out.println(-2147483647&0x7fffffff%10);
-        System.out.println(-2147483648&0x7fffffff%10);
+        System.out.println(-1 & 0x7fffffff);
+        System.out.println(-2&0x7fffffff);
+        System.out.println(-3333&0x7fffffff);
+        System.out.println(-2147483647&0x7fffffff);
+        System.out.println(-2147483648&0x7fffffff);
 
         if((2&0x7fffffff)>=0){
             System.out.println("True = " + (2&0x7fffffff));
-        }*/
-        double x = 2<<2;
-        System.out.println(x);
+        }
+       /* double x = 2<<2;
+        System.out.println(x);*/
 
 
 
