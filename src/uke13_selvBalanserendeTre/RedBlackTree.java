@@ -98,25 +98,31 @@ public class RedBlackTree<K, V> implements RedBlackI<K, V> {
 
     private void rotate(Node<K, V> node) {
         Node<K, V> grandparent = node.parent.parent;
-        Node<K, V> temp = null;
+        Node<K,V> sibling;
         if (node.isLeftChild && node.parent.isLeftChild) {
             //right rotation:
-            temp = grandparent.left;
-            grandparent.left = temp.right;
-            temp.right = grandparent;
+            rightRotation(grandparent);
+            node.isBlack = false;
+            node.parent.isBlack = true;
+            sibling = node.parent.right!=null?node.parent.right:null;
+            if(sibling!=null){
+                sibling.isBlack = false;
+            }
         }
         if (!node.isLeftChild && !node.parent.isLeftChild) {
             //left rotation:
-            temp = grandparent.right;
-            grandparent.right = temp.left;
-            temp.left = grandparent;
+            leftRotation(grandparent);
         }
         if (node.isLeftChild && !node.parent.isLeftChild) {
             //right-left rotation:
-
+            rightLeftRotation(grandparent);
+            node.isBlack = true;
+            node.right.isBlack = false;
+            node.left.isBlack = false;
         }
         if (!node.isLeftChild && node.parent.isLeftChild) {
             //left-right rotation:
+            leftRightRotation(grandparent);
         }
 
     }
@@ -133,5 +139,13 @@ public class RedBlackTree<K, V> implements RedBlackI<K, V> {
         node.left = temp.right;
         temp.right = node;
         return temp;
+    }
+    private Node<K, V> rightLeftRotation(Node<K, V> node) {
+        node.right = rightRotation(node.right);
+        return leftRotation(node);
+    }
+    private Node<K, V> leftRightRotation(Node<K, V> node) {
+        node.left = leftRotation(node.left);
+        return rightRotation(node);
     }
 }
