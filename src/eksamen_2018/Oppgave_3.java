@@ -12,27 +12,35 @@ public class Oppgave_3 {
 
 }
 class Mengde{
-    private int[]a;
+    private int[] a;
     public Mengde(){
         this.a = new int[0];
     }
     public Mengde(int [] b, int n){
         //kode:
-        this.a = new int[n];
-        int i = 0;
-        while(i<n){
-            a[i] = b[i];
-            i++;
+        if(n>b.length || n<0){
+            throw new IllegalArgumentException("n should be = (0,b.length]");
         }
+        for(int i = 1; i<n; i++){
+            if(b[i]<=b[i-1]){
+                String msg = (b[i]<b[i-1]) ? "usortert mengde" : "Duplikater i megden";
+                throw new IllegalArgumentException(msg);
+            }
+        }
+        a = Arrays.copyOf(b,n);
     }
 
     @Override
     public String toString() {
         //kode:
+        if(a.length==0){
+            return "[]";
+        }
         StringJoiner sj = new StringJoiner(", ","[","]");
         for(int el: a){
             sj.add(""+el);
         }
         return sj.toString();
+        //alternativ: return Arrays.toString(a);
     }
 }
