@@ -8,8 +8,8 @@ public class LinkedListStack<T> implements Stack<T> {
     private class Node<T> {
         Node<T> next;
         T value;
-        public Node(T val,Node<T> next){
-            this.next = next;
+        public Node(T val){
+            this.next = null;
             this.value = val;
         }
     }
@@ -25,11 +25,18 @@ public class LinkedListStack<T> implements Stack<T> {
             push(el);
         }
     }
+    public int getSize(){
+        return this.size;
+    }
+    public boolean isEmpty(){
+        return this.size==0;
+    }
 
     @Override
     public void push(T value) {
-        //Node<T> newNode =
-        new Node<>(value,head);
+        Node<T> newNode = new Node<>(value);
+        newNode.next = head;
+        head = newNode;
         size++;
     }
 
