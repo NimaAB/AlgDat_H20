@@ -1,6 +1,6 @@
 package uke7_bufferKøStack;
 
-public class Stack {
+public class StackEksampel {
     public static void main(String[] args) {
 
         updateA();
